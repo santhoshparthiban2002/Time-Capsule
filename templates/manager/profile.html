@@ -1,0 +1,378 @@
+{% extends 'manager/managerbase.html' %}  {% load static %}  {% load poll_extras %}
+{% block contents %}
+<li class="nav-item"><a class="nav-link " href="{% url 'index' %}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+<li class="nav-item"><a class="nav-link active" href="{% url 'profile' %}"><i class="fas fa-user"></i><span>Profile</span></a></li>
+<li class="nav-item"><a class="nav-link " href="{% url 'users' %}"><i class="far fa-list-alt"></i><span>Users</span></a></li>
+<li class="nav-item"><a class="nav-link " href="{% url 'delivery' %}"><i class="fas fa-table"></i><span>Delivery</span></a></li>
+<li class="nav-item"><a class="nav-link " href="{% url 'delivered' %}"><i class="fas fa-history"></i><span>Delivered</span></a></li>
+{% endblock %}
+
+{% block content %}    
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    
+    } 
+</script>
+<div class="container-fluid">
+    <h3 class="text-dark mb-4">Time Capsule</h3>
+    <div class="row gy-3 gy-sm-3 gy-md-3 gy-lg-0 gy-xl-0 gy-xxl-0 row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2 mb-3">
+        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold"><strong>Time Capsule Info</strong><br></p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Username</strong>
+                                                        {% if profile.username %}
+                                                        <p>{{profile.username}}</p>
+                                                        {% else %} 
+                                                        <p>Username is empty</p>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Password</strong>
+                                                        {% if profile.security %}
+                                                        <p>{%security_decode profile.security%}</p>
+                                                        {% else %} 
+                                                        <p>Password is empty</p>
+                                                        {% endif %}
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            
+                        <div class="modal fade" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                              
+                                    
+                                <div class="modal-header">
+                                                   <p class="modal-title h5 text-dark text-center ">Time Capsule ID {{profile.username}}</p> 
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                    </div>
+                                              
+                                            
+                                                    <div class="modal-body h6 text-dark">
+                                                      Click confirm button to change the password
+                                                    </div>
+                                       
+                                                    <div class="modal-footer">
+                                                        {% if profile.username %}
+<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="window.location.href='{% url 'update_password' profile.username %}'">Confirm</button>
+                                                   {% endif %} 
+</div>
+                                              
+                                                  </div>
+                                                </div>
+                    </div>
+                                              
+
+
+
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Name</strong>
+                                                  
+                                                        {% if profile.name %}
+                                                        <p>{{profile.name}}</p>
+                                                        {% else %} 
+                                                        <p>Name is empty</p>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Status</strong>
+           
+                                                        {% if job.executed %}
+                                                        <p>Executed on {% date_time  job.executed_on %}</p>
+                                                        {% else %} 
+                                                        <p>Not Executed</p>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+        <div class="float-end mb-3">
+            <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#myModal" >Update Password</button></div>
+                                        </div>
+                                    </div>
+                                    <div class="card shadow">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold"><strong>Delivery Info</strong><br></p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Delivery date</strong>
+                                                        {% if profile.delivery %}
+                                                        <p>{% dates profile.delivery %}</p>
+                                                        {% else %} 
+                                                        <p>Delivery date is empty</p>
+                                                        {% endif %}
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Email id</strong>
+                                                        {% if profile.email %}
+                                                        <p>{{profile.email}}</p>
+                                                        {% else %} 
+                                                        <p>Email is empty</p>
+                                                        {% endif %}
+                                   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Phone no</strong>
+                                          
+                                                        {% if profile.phone %}
+                                                        <p>{{profile.phone}}</p>
+                                                        {% else %} 
+                                                        <p>Phone is empty</p>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Whatsapp no</strong>
+                              
+                                                        {% if profile.whatsapp %}
+                                                        <p>{{profile.whatsapp}}</p>
+                                                        {% else %} 
+                                                        <p>Whatsapp is empty</p>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-9 col-md-8">
+                                                <p class="text-primary m-0 fw-bold"><strong>Delivery Status</strong><br></p>
+                                            </div>
+                                            <div class="col d-flex d-xxl-flex justify-content-end justify-content-xxl-end">
+                                                <p class="text-primary m-0 fw-bold">
+                            
+                                                    {% if profile.delivery %}
+                                                    <strong>{% difference_duration profile.delivery %} days</strong>
+                            
+                                                    {% else %} 
+                                                    <p>Error</p>
+                                                    {% endif %}
+                                                    <br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3"><strong>Login Status</strong>
+                                        {% if profile.login %}
+                                        <p>{% date_time profile.login%}</p>
+                                        {% else %} 
+                                        <p>Not Logined</p>
+                                        {% endif %}
+                                       
+                                    </div>
+                                    <div class="mb-3"><strong>Mail status</strong>
+                                        {% if job.mail_status %}
+                                        <p>Sended</p>
+                                        {% else %} 
+                                        <p>Not Sended</p>
+                                        {% endif %}
+                                        
+                                    </div>
+                                    <div class="mb-3"><strong>SMS status</strong>
+                                        {% if job.sms_status %}
+                                        <p>Sended</p>
+                                        {% else %} 
+                                        <p>Not Sended</p>
+                                        {% endif %}
+                                     
+                                    </div>
+                                    <div class="mb-3"><strong>Whatsapp status</strong>
+                                        {% if job.whatsapp_status %}
+                                        <p>Sended</p>
+                                        {% else %} 
+                                        <p>Not Sended</p>
+                                        {% endif %}
+                                     
+                                    </div>
+                                    <div class="mb-3"><strong>Mail delivery id</strong>
+                                        {% if job.mail_id %}
+                                        <p>{{job.mail_id}}</p>
+                                        {% else %} 
+                                        <p>Not Sended</p>
+                                        {% endif %}
+                           
+                                    </div>
+                                    <div class="mb-3"><strong>SMS delivery id</strong>
+                                        {% if job.sms_id %}
+                                        <p>{{job.sms_id}}</p>
+                                        {% else %} 
+                                        <p>Not Sended</p>
+                                        {% endif %}
+                                       
+                                    </div>
+                                    <div class="mb-3"><strong>Whatsapp delivery id</strong>
+                                        {% if job.whatsapp_id %}
+                                        <p>{{job.whatsapp_id}}</p>
+                                        {% else %} 
+                                        <p>Not Sended</p>
+                                        {% endif %}
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="box-shadow: 3px 0px 20px 0px var(--bs-card-border-color);">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold"><strong>Time Capsule</strong><br></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Message</p>
+                                    <div>
+                                        {% if info.Message %}
+                                        <p>{{info.Message}}</p>
+                                        {% else %} 
+                                        <p>Message is empty</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Video</p>
+                                    <div >
+                                        {% if info.videos %}
+                                    
+        <video id="my-video" class="video-js" controls preload="auto" width="100%" height="100%" data-setup="{}">
+      <source src="{{info.videos.url}}" type="video/mp4"></source>
+    </video>
+
+                                        {% else %} 
+                                        <p>Video is empty</p>
+                                        {% endif %}
+
+  
+    
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Audio</p>
+                                    {% if info.audios %}
+                                        <audio controls>
+                                    <source src="{{info.audios.url}}"></source>
+                                   </audio>                        
+                                    {% else %} 
+                                    <p>Audio is empty</p>
+                                    {% endif %}
+
+      
+                                  
+                                </div>
+                            </div>
+                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Image</p>
+                                    <div >
+                                        {% if info.images %}
+                                        <img width="100%" height="100%" src="{{info.images.url}}" ></img>                      
+                                    {% else %} 
+                                    <p>Audio is empty</p>
+                                    {% endif %}
+                                     
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Document</p>
+                                    <div>
+                                        {% if info.documents %}
+                                        <a width="100%" height="100%" src="{{info.documents.url}}" >ef</a>                      
+                                    {% else %} 
+                                    <p>Audio is empty</p>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="myModal1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">    
+                            <div class="modal-header">
+                                               <p class="modal-title h5 text-dark text-center ">Time Capsule ID {{profile.username}}</p> 
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+
+                                                <div class="modal-body h6 text-dark">
+                                                  Click confirm button to send message
+                                                </div>
+                                                <div class="modal-footer">
+                                                    {% if profile.username %}
+<button type="button" class="btn btn-success" data-bs-dismiss="modal" >Confirm</button>
+{% endif %}                    
+</div>
+                                          
+                                              </div>
+                                            </div>
+                </div>
+
+
+
+                    <div class="card shadow mb-5 mt-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold"><strong>Send message</strong><br></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form method="post" >
+
+                                        {% csrf_token %}
+                                        <div class="mb-3">
+                                <label class="form-label" for="header"><strong>Header</strong><br></label>
+                                            <textarea class="form-control" name="header" rows="1" id="header"></textarea>
+                                            <label class="form-label" for="signature"><strong>Message</strong><br></label>
+                                            <textarea class="form-control" name="signature" rows="4" info.documents.url="signature"></textarea>
+                                            <div class="row row-cols-sm-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-3">
+                                                <div class="col-5">
+   <div class="form-check"><input class="form-check-input" type="checkbox" value="mail" name="status"><label class="form-check-label" for="formCheck-1">Mail</label></div>
+                                                </div>
+                                                <div class="col-3">
+         <div class="form-check"><input class="form-check-input" type="checkbox" value="sms" name="status"><label class="form-check-label" for="formCheck-2">SMS</label></div>
+                                                </div>
+                                                <div class="col">
+    <div class="form-check"><input class="form-check-input" type="checkbox" value="whatsapp" name="status"><label class="form-check-label" for="formCheck-3">Whatsapp</label></div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+ <div class="d-flex d-md-flex justify-content-end justify-content-md-end mb-3"><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal1" type="button">Send</button></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+               {% endblock %}

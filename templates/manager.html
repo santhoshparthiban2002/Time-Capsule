@@ -1,0 +1,55 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Untitled</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+        <script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            } 
+        </script>
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="#">Hi, {{user.username}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+        </li>
+        
+    
+        
+        
+        {% for x in profile %}
+        {% if not  x.is_superuser %}
+        {{x.name}}
+        {% endif %} <br>
+         {% endfor %}
+        
+         {% for x in info %}
+         {% if not  x.is_superuser %}
+         {{x.message}}
+         {% endif %}
+         <br>
+          {% endfor %}
+       
+
+
+
+
+
+
+
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">SIGN UP</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
+        </li>
+        {% endif %}
+    </body>
+    </html>

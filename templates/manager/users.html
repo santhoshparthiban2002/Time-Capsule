@@ -1,0 +1,105 @@
+{% extends 'manager/managerbase.html' %} {% load static %} {% load poll_extras
+%} {% block contents %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'index' %}"
+    ><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a
+  >
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'profile' %}"
+    ><i class="fas fa-user"></i><span>Profile</span></a
+  >
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="{% url 'users' %}"
+    ><i class="far fa-list-alt"></i><span>Users</span></a
+  >
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'delivery' %}"
+    ><i class="fas fa-table"></i><span>Delivery</span></a
+  >
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'delivered' %}"
+    ><i class="fas fa-history"></i><span>Delivered</span></a
+  >
+</li>
+{% endblock %} {% block content %}
+<div class="container-fluid">
+  <h3 class="text-dark mb-4">Users List&nbsp;</h3>
+  <div class="card shadow">
+    <div class="card-header py-3">
+      <p class="text-primary m-0 fw-bold">Information</p>
+    </div>
+    <div class="card-body">
+      <div
+        class="table-responsive table mt-2"
+        id="dataTable-1"
+        role="grid"
+        aria-describedby="dataTable_info"
+      >
+        <table class="table my-0" id="dataTable">
+          <thead>
+            <tr>
+              <th onclick="sortTable(0)">Username</th>
+              <th onclick="sortTable(1)">Name</th>
+              <th onclick="sortTable(2)">Registered</th>
+              <th onclick="sortTable(3)">Delivery</th>
+              <th onclick="sortTable(4)">Progress</th>
+              <th onclick="sortTable(5)">View</th>
+            </tr>
+          </thead>
+          <tbody id="filter">
+            {% for x in profile %} {% if not x.is_superuser %}
+            <tr>
+              <td style="text-align: left">{{x.username}}</td>
+              <td style="width: auto">{{x.name}}</td>
+              <td style="width: auto">{% date_time x.date_joined %}</td>
+              <td style="width: auto">{% dates x.delivery%}</td>
+              {% if x.delivery < date %}
+              <td style="width: auto">Executed</td>
+              {% endif %} {% if x.delivery == date %}
+              <td style="width: auto">executed on Today</td>
+              {% endif %} {% if x.delivery > date %}
+              <td style="width: auto">In progress</td>
+              {% endif %}
+              <td>
+                <button
+                  onclick="window.location.href='{% url 'user_profile' x.username %}'"
+                  class="btn btn-primary text-capitalize fs-6 fw-bold text-center link-light text-bg-primary"
+                  type="button"
+                  style="width: auto"
+                >
+                  View
+                </button>
+              </td>
+            </tr>
+            {% endif %} {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><strong>Username</strong></td>
+              <td><strong>Name</strong></td>
+              <td><strong>Registered</strong></td>
+              <td><strong>Delivery</strong></td>
+              <td><strong>Progress</strong></td>
+              <td><strong>View</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/datatable.js' %}"></script>
+<script src="{% static 'js/bootdatatable.js' %}"></script>
+
+<script>
+  $(document).ready(function () {
+    $("#dataTable").DataTable();
+  });
+</script>
+
+{% endblock %}

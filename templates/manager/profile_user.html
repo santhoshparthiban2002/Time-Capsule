@@ -1,0 +1,224 @@
+{% extends 'manager/managerbase.html' %}   
+{% block contents %}
+<li class="nav-item"><a class="nav-link " href="{% url 'index' %}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+<li class="nav-item"><a class="nav-link active" href="{% url 'profile' %}"><i class="fas fa-user"></i><span>Profile</span></a></li>
+<li class="nav-item"><a class="nav-link " href="{% url 'users' %}"><i class="far fa-list-alt"></i><span>Users</span></a></li>
+<li class="nav-item"><a class="nav-link " href="{% url 'delivery' %}"><i class="fas fa-table"></i><span>Delivery</span></a></li>
+<li class="nav-item"><a class="nav-link " href="{% url 'delivered' %}"><i class="fas fa-history"></i><span>Delivered</span></a></li>
+
+{% endblock %}
+
+                {% block content %}    
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Time Capsule</h3>
+                    <div class="row gy-3 gy-sm-3 gy-md-3 gy-lg-0 gy-xl-0 gy-xxl-0 row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2 mb-3">
+                        <div class="col-lg-8">
+                            <div class="row mb-3 d-none">
+                                <div class="col">
+                                    <div class="card text-white bg-primary shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card text-white bg-success shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold"><strong>Time Capsule Info</strong><br></p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Username</strong>
+                                                        <p>name</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Password</strong>
+                                                        <p>name</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Name</strong>
+                                                        <p>name</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Status</strong>
+                                                        <p>name</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-end mb-3"><button class="btn btn-primary btn-sm" type="submit">Update Password</button></div>
+                                        </div>
+                                    </div>
+                                    <div class="card shadow">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold"><strong>Delivery Info</strong><br></p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Delivery date</strong>
+                                                        <p>name</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Email id</strong>
+                                                        <p>name</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Phone no</strong>
+                                                        <p>name</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><strong>Whatsapp no</strong>
+                                                        <p>name</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-9 col-md-8">
+                                                <p class="text-primary m-0 fw-bold"><strong>Delivery Status</strong><br></p>
+                                            </div>
+                                            <div class="col d-flex d-xxl-flex justify-content-end justify-content-xxl-end">
+                                                <p class="text-primary m-0 fw-bold"><strong>1 day</strong><br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3"><strong>Login Status</strong>
+                                        <p>name</p>
+                                    </div>
+                                    <div class="mb-3"><strong>Mail status</strong>
+                                        <p>name</p>
+                                    </div>
+                                    <div class="mb-3"><strong>Phone status</strong>
+                                        <p>name</p>
+                                    </div>
+                                    <div class="mb-3"><strong>Whatsapp status</strong>
+                                        <p>name</p>
+                                    </div>
+                                    <div class="mb-3"><strong>Mail delivery id</strong>
+                                        <p>name</p>
+                                    </div>
+                                    <div class="mb-3"><strong>SMS delivery id</strong>
+                                        <p>name</p>
+                                    </div>
+                                    <div class="mb-3"><strong>Whatsapp delivery id</strong>
+                                        <p>name</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="box-shadow: 3px 0px 20px 0px var(--bs-card-border-color);">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold"><strong>Time Capsule</strong><br></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Message</p>
+                                    <div>
+                                        <p>Paragraph</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Video</p>
+                                    <div>
+                                        <p>Paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Audio</p>
+                                    <div>
+                                        <p>Paragraph</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2">
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Image</p>
+                                    <div>
+                                        <p>Paragraph</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p class="text-primary m-0 fw-bold" style="padding-top: 10px;padding-bottom: 10px;">Document</p>
+                                    <div>
+                                        <p>Paragraph</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-5">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold"><strong>Send message</strong><br></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form>
+                                        <div class="mb-3"><label class="form-label" for="signature"><strong>Message</strong><br></label><textarea class="form-control" id="signature" rows="4" name="signature"></textarea>
+                                            <div class="row row-cols-sm-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-3">
+                                                <div class="col-5">
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Mail</label></div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2"><label class="form-check-label" for="formCheck-2">SMS</label></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label" for="formCheck-3">Whatsapp</label></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex d-md-flex justify-content-end justify-content-md-end mb-3"><button class="btn btn-primary btn-sm" type="submit">Send</button></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  {% endblock %}

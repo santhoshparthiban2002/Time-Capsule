@@ -1,0 +1,89 @@
+{% extends 'manager/managerbase.html' %}     {% load static %} 
+{% load poll_extras %}         
+{% block contents %}
+<li class="nav-item"><a class="nav-link " href="{% url 'index' %}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+<li class="nav-item"><a class="nav-link " href="{% url 'profile' %}"><i class="fas fa-user"></i><span>Profile</span></a></li>
+<li class="nav-item"><a class="nav-link " href="{% url 'users' %}"><i class="far fa-list-alt"></i><span>Users</span></a></li>
+<li class="nav-item"><a class="nav-link " href="{% url 'delivery' %}"><i class="fas fa-table"></i><span>Delivery</span></a></li>
+<li class="nav-item"><a class="nav-link active" href="{% url 'delivered' %}"><i class="fas fa-history"></i><span>Delivered</span></a></li>
+
+{% endblock %}
+
+                {% block content %} 
+                
+                 <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Delivered List</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Delivered Info</p>
+                        </div>
+                        <div class="card-body">
+                            
+                            <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Name</th>
+                                            <th>Executed&nbsp;</th>
+                                            <th>Mail status</th>
+                                            <th>SMS status</th>
+                                            <th>Whatsapp status</th>
+                                            <th>View</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody> {% for x in profile %}
+                                        {% if not  x.is_superuser  %}
+                                        <tr>        
+                                            <td style="text-align: left;padding-top: 16px;">{{x.username}}</td>
+                                            <td style="padding-top: 16px;">{{x.name}}</td>
+                                            <td style="padding-top: 16px;">{% model_job_executed x.id  %}</td>
+                                            <td style="padding-top: 16px;">{% model_job_mail_status x.id  %}</td>
+                                            <td style="padding-top: 16px;">{% model_job_sms_status x.id  %}</td>
+                                            <td style="padding-top: 16px;">{% model_job_whatsapp_status x.id  %}</td>  
+                                       
+                                            <td>
+                                                <button onclick="window.location.href='{% url 'user_profile' x.username %}'"  class="btn btn-primary text-capitalize fs-6 fw-bold text-center link-light text-bg-primary" type="button" style="width: auto;">View</button>
+</td>
+                                            
+
+                                        </tr> {% endif %}
+                                            {% endfor %}
+                                       
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><strong>Username</strong></td>
+                                            <td><strong>Name</strong></td>
+                                            <td><strong>Executed&nbsp;</strong></td>
+                                            <td><strong>Mail_status</strong></td>
+                                            <td><strong>SMS status</strong></td>
+                                            <td><strong>Whatsapp_status</strong></td>
+                                            <td><strong>View</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+           
+                        </div>
+                    </div>
+                </div>  
+                
+                
+                
+                
+                
+                
+                
+                
+       
+                <script src="{% static 'js/datatable.js' %}"></script>
+                <script src="{% static 'js/bootdatatable.js' %}"></script>
+               
+                <script>
+                    $(document).ready(function () {
+                    $('#dataTable').DataTable();
+                    
+                  });
+                  </script>
+                {% endblock %}
