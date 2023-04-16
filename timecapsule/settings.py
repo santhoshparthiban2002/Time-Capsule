@@ -96,19 +96,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = 'timecapsule1.in@gmail.com'
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = os.getenv('EMAIL')
+EMAIL_HOST = os.getenv('HOST')
 EMAIL_PORT= 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = "nvmayqwdduwpoxol"
+EMAIL_HOST_PASSWORD = os.getenv('PASSWORD')
 
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"  
 SCHEDULER_DEFAULT = True
 
 
-TWILIO_ACCOUNT_SID = 'ACeacfc14979031e09bd286ecaa2f2af64'
-TWILIO_AUTH_TOKEN = "949122d4cf7a18e9fd29025abba16f37"
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ID')
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_TOKEN')
 
 
 AUTH_USER_MODEL = 'home.User'
