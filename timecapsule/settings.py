@@ -94,6 +94,7 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+
 EMAIL_BACKEND =  os.getenv('EMAIL_BACKEND')
 EMAIL_HOST_USER =  os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST =  os.getenv('EMAIL_HOST')
@@ -103,6 +104,7 @@ EMAIL_HOST_PASSWORD =  os.getenv('EMAIL_HOST_PASSWORD')
 
 
 SCHEDULER_DEFAULT = True
+
 
 
 TWILIO_ACCOUNT_SID =  os.getenv('TWILIO_ACCOUNT_SID')
