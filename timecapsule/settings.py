@@ -55,12 +55,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'timecapsule.wsgi.application'
 
 
-#DATABASES = {
-   # 'default': {
-  #      'ENGINE': 'django.db.backends.sqlite3',
- #       'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
+DATABASES = {
+    'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+      'NAME': BASE_DIR / 'db.sqlite3',
+  }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -87,7 +87,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'
-STATICFILES_DIRS =(os.path.join(BASE_DIR,'static'),)
+STATIC_ROOT  =(os.path.join(BASE_DIR, 'staticfiles_build','static'),)
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 
