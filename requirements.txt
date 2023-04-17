@@ -1,0 +1,4 @@
+django
+twilio
+APScheduler
+python-dotenv
