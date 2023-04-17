@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-
+load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIRS = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR =os.path.join(BASE_DIRS,'templates')
@@ -11,7 +11,7 @@ STATIC_DIR=os.path.join(BASE_DIRS,'static')
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
