@@ -185,7 +185,6 @@ def send_hello():
           jobs.whatsapp_id=message2
           jobs.whatsapp_status=True
         jobs.save()
-        
     connection.close()   
 
 

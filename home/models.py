@@ -77,7 +77,19 @@ class information(models.Model):
     documents=models.FileField(upload_to=document_rename,null=True)
 
 
+class Jobs(models.Model):
+   job_name = models.CharField(max_length=100)
+   next_run_time = models.DateTimeField(null=True, blank=True)
+   def __str__(self):
+       return self.job_name
 
+class JobExecution(models.Model):
+   job = models.ForeignKey(Jobs, on_delete=models.CASCADE)
+   runtime = models.DateTimeField(auto_now_add=True)
+   error = models.TextField(null=True, blank=True)
+   status = models.CharField(max_length=100)
+   def __str__(self):
+       return f"{self.job} - {self.runtime}"
 
 @receiver(post_delete)
 def delete_files_when_row_deleted_from_db(sender, instance, **kwargs):

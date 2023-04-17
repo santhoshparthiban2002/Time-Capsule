@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import information,User,job
+from .models import information,User,job,Jobs,JobExecution
 from django.contrib.auth.admin import UserAdmin
-
 class CustomUserAdmin(UserAdmin):
 
      fieldsets = (
@@ -28,6 +27,8 @@ class CustomUserAdmin(UserAdmin):
 
     )
 
+admin.site.register(Jobs)
+admin.site.register(JobExecution)
 admin.site.register(information)
 admin.site.register(job)
 admin.site.register(User, CustomUserAdmin)

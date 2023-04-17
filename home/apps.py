@@ -7,4 +7,3 @@ class HomeConfig(AppConfig):
     def ready(self):
         if settings.SCHEDULER_DEFAULT:
             from timecapsule import scheduler
-            scheduler.start()
