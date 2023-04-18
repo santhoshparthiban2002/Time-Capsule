@@ -1,5 +1,4 @@
-{% extends 'manager/managerbase.html' %} {% load static %} {% load poll_extras
-%} {% block contents %}
+{% extends 'manager/managerbase.html' %} {% load static %} {% load poll_extras %} {% block contents %}
 <li class="nav-item">
   <a class="nav-link" href="{% url 'index' %}"
     ><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a
@@ -55,8 +54,9 @@
             <tr>
               <td style="text-align: left">{{x.username}}</td>
               <td style="width: auto">{{x.name}}</td>
-              <td style="width: auto">{% date_time x.date_joined %}</td>
-              <td style="width: auto">{% dates x.delivery%}</td>
+              <td style="width: auto">{% if x.date_joined %} {% date_time x.date_joined %}{% endif %}
+               </td>
+              <td style="width: auto">{% if x.delivery %}{% dates x.delivery%}{% endif %}</td>
               {% if x.delivery < date %}
               <td style="width: auto">Executed</td>
               {% endif %} {% if x.delivery == date %}
